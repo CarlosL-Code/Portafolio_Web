@@ -14,6 +14,40 @@ function mostrarOcultarMenu() {
     }
 }
 
+// Cierra el menú al hacer scroll
+window.addEventListener("scroll", () => {
+    if (!menuVisible) return;
+    const nav = document.getElementById("nav");
+    if (!nav) return;
+    nav.classList.remove("responsive");
+    menuVisible = false;
+}, { passive: true });
+
+// Cierra el menú al hacer click fuera del nav y del botón
+document.addEventListener("click", (e) => {
+    if (!menuVisible) return;
+
+    const nav = document.getElementById("nav");
+    const toggleBtn = document.querySelector(".nav-responsive"); // <div class="nav-responsive">
+    if (!nav || !toggleBtn) return;
+
+    const clicDentroDelNav = nav.contains(e.target);
+    const clicEnToggle = toggleBtn.contains(e.target);
+
+    if (!clicDentroDelNav && !clicEnToggle) {
+        nav.classList.remove("responsive");
+        menuVisible = false;
+    }
+});
+
+// Si usas los links del menú para navegar, ciérralo también
+function seleccionar(e) {
+    const nav = document.getElementById("nav");
+    if (!nav) return;
+    nav.classList.remove("responsive");
+    menuVisible = false;
+}
+
 function seleccionar() {
     document.getElementById("nav").classList = "";
     menuVisible = false;
@@ -45,17 +79,24 @@ function efectoHabilidades() {
     }
 }
 
-function animarNiveles() {
+function animarNivelesObserver() {
     const niveles = document.querySelectorAll('.nivel.scroll-anim');
-    const triggerBottom = window.innerHeight * 0.85;
 
-    niveles.forEach(nivel => {
-        const nivelTop = nivel.getBoundingClientRect().top;
-        if (nivelTop < triggerBottom) {
-            nivel.classList.add('visible');
-        }
-    });
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible'); // <- para que se reinicie
+            }
+        });
+    }, { threshold: 0.7 }); // 30% visible
+
+    niveles.forEach(nivel => observer.observe(nivel));
 }
+
+window.addEventListener('load', animarNivelesObserver);
+
 
 /* =========================
    Acordeón de certificaciones
@@ -88,7 +129,7 @@ const formulario = document.getElementById("miFormulario");
 const mensajeFormulario = document.getElementById("mensaje-formulario");
 
 if (formulario && mensajeFormulario) {
-    formulario.addEventListener("submit", function(event) {
+    formulario.addEventListener("submit", function (event) {
         event.preventDefault();
 
         const formData = new FormData(this);

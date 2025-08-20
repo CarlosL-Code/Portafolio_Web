@@ -231,107 +231,139 @@ html{
 .sobremi button:hover .overlay {
     width: 100%;
 }
-/* SECCION SKILLS */
-.skills{
-    background-color: #252A2E;
-    color: #fff;
-    padding: 50px 20px;
-}
-.skills .contenido-seccion{
-    max-width: 1100px;
-    margin: auto;
-}
-.skills h2{
-    font-size: 48px;
-    font-family: 'Righteous';
-    text-align: center;
-    padding: 20px 0;
-}
-.skills .fila{
-    display: flex;
-    flex-wrap: wrap;
-}
-.skills .fila .col{
-    width: 50%;
-    padding: 0 20px;
-}
-.skills .fila .col h3{
-    font-size: 28px;
-    font-family: 'Righteous';
-    margin-bottom: 25px;
-}
 
-/* Tarjeta de skill */
-.skills .skill{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #1e2326; /* más oscuro como curriculum */
-    padding: 15px 20px;
-    margin-bottom: 15px;
-    border-radius: 12px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.skills .skill h4 {
-    font-size: 18px;
-    font-weight: 600;
-    margin: 0;
-    color: #fff;
-}
+ /* =========================
+           SECCION SKILLS
+        ========================= */
+        .skills {
+            background-color: #252A2E;
+            color: #fff;
+            padding: 50px 20px;
+        }
+        .skills .contenido-seccion {
+            max-width: 1100px;
+            margin: auto;
+        }
+        .skills h2 {
+            font-size: 48px;
+            font-family: 'Righteous', cursive;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .skills .fila {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .skills .fila .col {
+            width: 50%;
+            padding: 0 20px;
+        }
+        .skills .fila .col h3 {
+            font-size: 28px;
+            font-family: 'Righteous', cursive;
+            margin-bottom: 25px;
+        }
 
-/* Etiquetas nivel */
-.nivel {
-    padding: 6px 14px;
-    border-radius: 14px;
-    font-size: 0.75em;
-    font-weight: bold;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+        /* Estilo de la tarjeta de habilidad */
+        .skills .skill {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1e2326;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .skill-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .skill-icons {
+            display: flex;
+            gap: 15px;
+        }
+        .skills .skill h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+            color: #fff;
+        }
+        .skill-icons i {
+            font-size: 2.5rem;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .skill-icons i:hover {
+            transform: scale(1.2);
+        }
 
-/* Colores */
-.basico { background: #e57373; }
-.intermedio { background: #ffb74d; }
-.avanzado { background: #64b5f6; }
-.experto { background: #81c784; }
+        /* Estilos para el nivel de habilidad */
+        .nivel {
+            padding: 8px 16px;
+            border-radius: 14px;
+            font-size: 0.8em;
+            font-weight: bold;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
 
-/* Animación hover */
-.skills .skill:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-}
-.nivel:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 10px rgba(255,255,255,0.5);
-}
+        /* Colores de nivel */
+        .basico { background: #e57373; }
+        .intermedio { background: #ffb74d; }
+        .avanzado { background: #64b5f6; }
+        .experto { background: #81c784; }
 
-/* Animación al aparecer */
-.nivel.scroll-anim {
-    transform: translateY(20px);
-    opacity: 0;
-    transition: transform 0.6s, opacity 0.6s;
-}
+        /* Animación hover en tarjeta completa */
+        .skills .skill:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
 
-.nivel.scroll-anim.visible {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-@media screen and (max-width: 768px) {
-    .skills .fila .col {
-        width: 100%;
-        padding: 0;
-    }
-    .skills .skill {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-}
-
-
-
+        /* Animación de entrada por scroll */
+        .scroll-anim {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .scroll-anim.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Media query para dispositivos móviles */
+        @media screen and (max-width: 768px) {
+            .skills .fila .col {
+                width: 100%;
+                padding: 0;
+            }
+            .skills .skill {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px;
+            }
+            .skill-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+                margin-bottom: 10px;
+            }
+            .skill-icons {
+                gap: 10px;
+            }
+            .nivel {
+                /* Se le da espacio y un tamaño de letra legible */
+                padding: 8px 16px;
+                font-size: 0.8rem;
+                border-radius: 12px;
+                min-width: unset;
+                min-height: unset;
+            }
+        }
 /* SECCION CURRICULUM */
 .curriculum{
     background-color: #1e2326;
@@ -409,43 +441,54 @@ html{
 }
 */
 
-
 /* SECCION PORTAFOLIO */
-
-.portafolio{
+.portafolio {
     background-color: #1e2326;
     color: #fff;
     padding: 50px 20px;
 }
-.portafolio .contenido-seccion{
+
+.portafolio .contenido-seccion {
     max-width: 1100px;
     margin: auto;
 }
-.portafolio h2{
+
+.portafolio h2 {
     font-size: 48px;
     font-family: 'Righteous';
     text-align: center;
     padding: 20px 0;
 }
-.portafolio .galeria{
+
+.portafolio .galeria {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
-.portafolio .galeria .proyecto{
-    position: relative;
+
+/* Cada proyecto */
+.portafolio .galeria .proyecto {
+    display: flex;
+    flex-direction: column; /* Imagen arriba, botón abajo */
     max-width: 340px;
-    height: fit-content;
     margin: 10px;
     cursor: pointer;
+    position: relative; /* necesario para overlay */
 }
-.portafolio .galeria .proyecto img{
+
+/* Contenedor de la imagen (overlay solo sobre esta) */
+.portafolio .galeria .proyecto .contenedor-img {
+    position: relative;
+}
+
+/* Imagen */
+.portafolio .galeria .proyecto img {
     width: 100%;
     display: block;
-    
-
 }
-.portafolio .galeria .proyecto .overlay{
+
+/* Overlay sobre la imagen */
+.portafolio .galeria .proyecto .overlay {
     position: absolute;
     top: 0;
     width: 100%;
@@ -460,16 +503,67 @@ html{
     letter-spacing: 3px;
     opacity: 0;
 }
-.portafolio .galeria .proyecto .overlay h3{
+
+.portafolio .galeria .proyecto .contenedor-img:hover .overlay {
+    opacity: 1;
+}
+
+.portafolio .galeria .proyecto .overlay h3 {
     margin-bottom: 20px;
     transition: 1s;
 }
-.portafolio .galeria .proyecto .overlay:hover{
-    opacity: 1;
-}
-.portafolio .galeria .proyecto .overlay:hover h3{
+
+.portafolio .galeria .proyecto .overlay:hover h3 {
     margin-bottom: 0px;
 }
+
+/* Botón debajo de la imagen */
+.portafolio .galeria .proyecto .mensaje-desplegable {
+    text-align: center;
+    margin-top: 10px;
+    opacity: 0;          /* inicia invisible */
+    visibility: hidden;   /* no interactuable */
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+/* Aparece al hacer hover en desktop */
+.portafolio .galeria .proyecto:hover .mensaje-desplegable {
+    opacity: 1;
+    visibility: visible;
+}
+
+.portafolio .galeria .proyecto .mensaje-desplegable a {
+    display: inline-block;
+    background-color: #1CB698;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.portafolio .galeria .proyecto .mensaje-desplegable a:hover {
+    background-color: #17a482;
+}
+
+/* Responsivo: botón oculto en móvil, usar clic en la imagen */
+@media (max-width: 768px) {
+    .portafolio .galeria .proyecto .mensaje-desplegable {
+        opacity: 1 !important;    /* puedes dejarlo visible si quieres */
+        visibility: visible !important;
+        margin-top: 8px;
+    }
+
+    /* Opcional: hacer que imagen sea clicable para abrir video */
+    .portafolio .galeria .proyecto .contenedor-img a {
+        display: block;
+    }
+}
+
+
+
+
 /* SECCION CONTACTO*/
 .contacto{
     background-image: url(img/contact_bg.png);
